@@ -1,5 +1,7 @@
 # HUB ME
 
+Modifier XXX par votre token github dans le fichier Index.re
+
 ## Introduction
 
 Le Document Object Model (DOM) est une interface de programmation pour les documents HTML, XML et SVG. Le DOM fournit une représentation du document comme un groupe structuré de nœuds et d'objets qui ont des propriétés et des méthodes. Les nœuds peuvent également être associés à des gestionnaires d'événements, et une fois que cet événement est déclenché, les gestionnaires d'événements sont exécutés. Essentiellement, il relie les pages Web aux scripts ou aux langages de programmation.

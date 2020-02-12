@@ -1,6 +1,16 @@
+open ReasonUrql;
 // Entry point
-
 [@bs.val] external document: Js.t({..}) = "document";
+
+let fetchOptions =
+  Client.FetchOpts(Fetch.RequestInit.make(
+    ~method_=Post,
+    ~headers=Fetch.HeadersInit.make({"Content-Type": "application/json", "Authorization": "Bearer XXX"}),
+    (),
+  ));
+
+let client = Client.make(~url="https://api.github.com/graphql", ~fetchOptions, ());
+
 
 // We're using raw DOM manipulations here, to avoid making you read
 // ReasonReact when you might precisely be trying to learn it for the first
@@ -27,22 +37,4 @@ let makeContainer = text => {
   content;
 };
 
-// All 4 examples.
-ReactDOMRe.render(<Greeting />, makeContainer("Atomic Greeting"));
-
-ReactDOMRe.render(
-  <BlinkingGreeting> {React.string("Hello!")} </BlinkingGreeting>,
-  makeContainer("Blinking Greeting"),
-);
-
-ReactDOMRe.render(
-  <ReducerFromReactJSDocs />,
-  makeContainer("Reducer From ReactJS Docs"),
-);
-
-ReactDOMRe.render(
-  <FetchedDogPictures />,
-  makeContainer("Fetched Dog Pictures"),
-);
-
-ReactDOMRe.render(<FetchRandomDog />, makeContainer("1 random Dog"));
+ReactDOMRe.render(<Provider value=client><RacineMenu /></Provider>, makeContainer("Doggy"));
